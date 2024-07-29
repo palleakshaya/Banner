@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Banner Carousel</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .banner-container {
+        position: relative;
+        width: 80vw;
+        max-width: 1000px;
+        height: 60vh;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+      }
+
+      .banner-content {
+        display: flex;
+        transition: transform 0.5s ease;
+        width: 100%;
+        height: 100%;
+      }
+
+      .banner-item {
+        flex: 0 0 100%;
+        height: 100%;
+      }
+
+      .banner-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .arrow {
+        background-color: whitesmoke;
+        color: #4a4949;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        z-index: 10;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 50px;
+        font-size: 24px;
+        border-radius: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .left-arrow {
+        left: 0;
+      }
+
+      .right-arrow {
+        right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="banner-container">
+      <button class="arrow left-arrow">&#10094;</button>
+      <div class="banner-content">
+        <div class="banner-item">
+          <img
+            src="https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/hi-nanna-et00364503-1701678655.jpg"
+            alt="Hi Nanna"
+          />
+        </div>
+        <div class="banner-item">
+          <img
+            src="https://m.media-amazon.com/images/M/MV5BMTkwNjIyOTY0N15BMl5BanBnXkFtZTgwMTk2MDUxMDI@._V1_.jpg"
+            alt="Ms.Dhoni"
+          />
+        </div>
+        <div class="banner-item">
+          <img
+            src="https://i.pinimg.com/736x/09/fb/21/09fb2104f5e4367692979ba3d894d10d.jpg"
+            alt="Sushanth Sing Rajput"
+          />
+        </div>
+        <div class="banner-item">
+          <img
+            src="https://w0.peakpx.com/wallpaper/6/508/HD-wallpaper-panda-profile.jpg"
+            alt="Panda"
+          />
+        </div>
+        <div class="banner-item">
+          <img
+            src="https://static9.depositphotos.com/1177973/1107/i/450/depositphotos_11071921-stock-photo-musical-notes-and-flower-on.jpg"
+            alt="Music"
+          />
+        </div>
+        <div class="banner-item">
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/6248aa441e2baa518da2b1ce/1649968023945-7OQUJLMLSVJ0PN1AKQZS/Pranati6.jpg"
+            alt="Dance"
+          />
+        </div>
+      </div>
+      <button class="arrow right-arrow">&#10095;</button>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const bannerContent = document.querySelector(".banner-content");
+        const leftArrow = document.querySelector(".left-arrow");
+        const rightArrow = document.querySelector(".right-arrow");
+
+        let index = 0;
+        const items = document.querySelectorAll(".banner-item");
+        const totalItems = items.length;
+        const itemWidth = items[0].offsetWidth;
+
+        function updateBanner() {
+          bannerContent.style.transform = `translateX(-${index * itemWidth}px)`;
+        }
+
+        function prevSlide() {
+          index = index === 0 ? totalItems - 1 : index - 1;
+          updateBanner();
+        }
+
+        function nextSlide() {
+          index = index === totalItems - 1 ? 0 : index + 1;
+          updateBanner();
+        }
+
+        leftArrow.addEventListener("click", prevSlide);
+        rightArrow.addEventListener("click", nextSlide);
+
+        setInterval(nextSlide, 9000);
+      });
+    </script>
+  </body>
+</html>
